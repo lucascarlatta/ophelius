@@ -3,15 +3,53 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ophelius</title>
+  <title>Chatbot - Ophelius</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { padding-bottom: 7rem; } /* spazio per input + bottom nav */
+  </style>
 </head>
-<body class="bg-gray-100 text-gray-800">
-  <div class="min-h-screen flex items-center justify-center p-4">
-    <div class="bg-white p-6 rounded-xl shadow-md w-full max-w-md">
-      <h1 class="text-2xl font-bold mb-4">Chatbot</h1>
-      <p class="text-sm">Qui puoi chattare con Ophelius.</p>
+<body class="bg-gray-100 text-gray-800 min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <div id="header"></div>
+
+  <!-- Chat area -->
+  <main class="flex-1 p-4 overflow-y-auto space-y-4" id="chat-log">
+    <div class="bg-white p-3 rounded-lg shadow max-w-md">
+      <p class="text-sm text-gray-600"><strong>Ophelius:</strong> Ciao Luca! Come ti senti oggi?</p>
+    </div>
+    <div class="bg-blue-100 p-3 rounded-lg shadow self-end max-w-md">
+      <p class="text-sm text-gray-800"><strong>Tu:</strong> Un po' stanco, ma motivato.</p>
+    </div>
+  </main>
+
+  <!-- Input -->
+  <div class="bg-white p-4 shadow-inner fixed bottom-14 left-0 right-0 z-40">
+    <div class="flex items-center gap-2">
+      <input
+        type="text"
+        class="flex-1 border rounded p-2 text-sm focus:outline-none focus:ring focus:border-blue-300"
+        placeholder="Scrivi un messaggio..."
+      />
+      <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">Invia</button>
     </div>
   </div>
+
+  <!-- Bottom Navigation -->
+  <div id="bottom-nav" class="fixed bottom-0 left-0 right-0"></div>
+
+  <script>
+    const include = (id, file) => {{
+      fetch(file)
+        .then(res => res.text())
+        .then(data => {{
+          document.getElementById(id).innerHTML = data;
+        }});
+    }};
+
+    include("header", "components/header.html");
+    include("bottom-nav", "components/bottom-nav.html");
+  </script>
 </body>
 </html>
