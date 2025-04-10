@@ -3,15 +3,54 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ophelius</title>
+  <title>Dashboard - Ophelius</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 text-gray-800">
-  <div class="min-h-screen flex items-center justify-center p-4">
-    <div class="bg-white p-6 rounded-xl shadow-md w-full max-w-md">
-      <h1 class="text-2xl font-bold mb-4">Dashboard</h1>
-      <p class="text-sm">Questa è una Dashboard. Qui troverai la tua panoramica.</p>
-    </div>
-  </div>
+<body class="bg-gray-100 text-gray-800 min-h-screen pb-20">
+
+  <!-- Header (incluso via JS) -->
+  <div id="header"></div>
+
+  <!-- Main Content -->
+  <main class="p-4 space-y-6">
+
+    <!-- Quote Box (incluso via JS) -->
+    <div id="quote-box"></div>
+
+    <!-- Quick Access Cards -->
+    <section class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <a href="diario.html" id="card-diario"></a>
+      <a href="training.html" id="card-training"></a>
+      <a href="chatbot.html" id="card-chatbot"></a>
+    </section>
+
+  </main>
+
+  <!-- Bottom Navigation (incluso via JS) -->
+  <div id="bottom-nav"></div>
+
+  <script>
+    const include = (id, file) => {{
+      fetch(file)
+        .then(res => res.text())
+        .then(data => {{
+          document.getElementById(id).innerHTML = data;
+        }});
+    }};
+
+    include("header", "components/header.html");
+    include("quote-box", "components/quote-box.html");
+
+    // Duplicate the card component manually since it's static for now
+    fetch("components/card.html")
+      .then(res => res.text())
+      .then(data => {{
+        document.getElementById("card-diario").innerHTML = data.replace("📓 Diario", "📓 Diario").replace("Scrivi e rileggi i tuoi pensieri", "Scrivi e rileggi i tuoi pensieri");
+        document.getElementById("card-training").innerHTML = data.replace("📓 Diario", "🎧 Training").replace("Scrivi e rileggi i tuoi pensieri", "Accedi a esercizi, audio e video");
+        document.getElementById("card-chatbot").innerHTML = data.replace("📓 Diario", "🤖 Avvia Ophelius").replace("Scrivi e rileggi i tuoi pensieri", "Inizia una nuova conversazione");
+      }});
+
+    include("bottom-nav", "components/bottom-nav.html");
+  </script>
 </body>
 </html>

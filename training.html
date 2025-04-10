@@ -3,15 +3,57 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ophelius</title>
+  <title>Training - Ophelius</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 text-gray-800">
-  <div class="min-h-screen flex items-center justify-center p-4">
-    <div class="bg-white p-6 rounded-xl shadow-md w-full max-w-md">
-      <h1 class="text-2xl font-bold mb-4">Training</h1>
-      <p class="text-sm">Accedi ai tuoi contenuti.</p>
-    </div>
-  </div>
+<body class="bg-gray-100 text-gray-800 min-h-screen pb-20">
+
+  <!-- Header -->
+  <div id="header"></div>
+
+  <main class="p-4 space-y-6">
+
+    <!-- Introduzione -->
+    <section>
+      <h2 class="text-lg font-semibold">I tuoi contenuti formativi</h2>
+      <p class="text-sm text-gray-600">Esercizi, audio e video per il tuo benessere.</p>
+    </section>
+
+    <!-- Lista contenuti -->
+    <section class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="bg-white rounded-lg shadow p-4">
+        <h3 class="text-md font-semibold mb-1">🧘‍♂️ Rilassamento guidato</h3>
+        <p class="text-sm text-gray-600">Audio - 10 min</p>
+        <button class="mt-2 text-blue-600 text-sm hover:underline">Ascolta</button>
+      </div>
+      <div class="bg-white rounded-lg shadow p-4">
+        <h3 class="text-md font-semibold mb-1">🎥 Tecniche di concentrazione</h3>
+        <p class="text-sm text-gray-600">Video - 5 min</p>
+        <button class="mt-2 text-blue-600 text-sm hover:underline">Guarda</button>
+      </div>
+      <div class="bg-white rounded-lg shadow p-4">
+        <h3 class="text-md font-semibold mb-1">📄 Esercizio di journaling</h3>
+        <p class="text-sm text-gray-600">Testo - 15 min</p>
+        <button class="mt-2 text-blue-600 text-sm hover:underline">Inizia</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Bottom Navigation -->
+  <div id="bottom-nav"></div>
+
+  <script>
+    const include = (id, file) => {{
+      fetch(file)
+        .then(res => res.text())
+        .then(data => {{
+          document.getElementById(id).innerHTML = data;
+        }});
+    }};
+
+    include("header", "components/header.html");
+    include("bottom-nav", "components/bottom-nav.html");
+  </script>
 </body>
 </html>

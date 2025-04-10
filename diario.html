@@ -3,15 +3,51 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ophelius</title>
+  <title>Diario - Ophelius</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 text-gray-800">
-  <div class="min-h-screen flex items-center justify-center p-4">
-    <div class="bg-white p-6 rounded-xl shadow-md w-full max-w-md">
-      <h1 class="text-2xl font-bold mb-4">Diario</h1>
-      <p class="text-sm">Questa è una Scrivi e rileggi i tuoi appunti.</p>
-    </div>
-  </div>
+<body class="bg-gray-100 text-gray-800 min-h-screen pb-20">
+
+  <!-- Header -->
+  <div id="header"></div>
+
+  <main class="p-4 space-y-6">
+
+    <!-- Form di scrittura -->
+    <section class="bg-white rounded-lg shadow p-4">
+      <h2 class="text-lg font-semibold mb-2">Scrivi qualcosa</h2>
+      <textarea rows="4" class="w-full border rounded p-2 text-sm focus:outline-none focus:ring focus:border-blue-300" placeholder="Come ti senti oggi?"></textarea>
+      <button class="mt-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">Salva</button>
+    </section>
+
+    <!-- Voci del diario -->
+    <section class="space-y-4" id="entries">
+      <div class="bg-white rounded-lg shadow p-4">
+        <p class="text-sm text-gray-700">🗓️ 10 Aprile 2025</p>
+        <p class="mt-1 text-gray-800">Oggi mi sento ispirato, ho fatto progressi nel progetto Ophelius.</p>
+      </div>
+      <div class="bg-white rounded-lg shadow p-4">
+        <p class="text-sm text-gray-700">🗓️ 9 Aprile 2025</p>
+        <p class="mt-1 text-gray-800">Sto iniziando a vedere una direzione chiara per il design.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Bottom Navigation -->
+  <div id="bottom-nav"></div>
+
+  <script>
+    const include = (id, file) => {{
+      fetch(file)
+        .then(res => res.text())
+        .then(data => {{
+          document.getElementById(id).innerHTML = data;
+        }});
+    }};
+
+    include("header", "components/header.html");
+    include("bottom-nav", "components/bottom-nav.html");
+  </script>
 </body>
 </html>
