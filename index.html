@@ -3,15 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ophelius</title>
+  <title>Benvenuto - Ophelius</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 text-gray-800">
-  <div class="min-h-screen flex items-center justify-center p-4">
-    <div class="bg-white p-6 rounded-xl shadow-md w-full max-w-md">
-      <h1 class="text-2xl font-bold mb-4">Benvenuto su Ophelius</h1>
-      <p class="text-sm">Questa è una pagina di esempio.</p>
-    </div>
-  </div>
+<body class="bg-gray-100 text-gray-800 min-h-screen pb-20">
+
+  <!-- Header -->
+  <div id="header"></div>
+
+  <!-- Intro content -->
+  <main class="p-4 space-y-6">
+    <section class="bg-white p-6 rounded-lg shadow text-center">
+      <h2 class="text-xl font-bold mb-2">Benvenuto su Ophelius</h2>
+      <p class="text-gray-600 text-sm mb-4">La tua guida verso un maggiore benessere lavorativo.</p>
+      <a href="dashboard.html" class="inline-block bg-blue-600 text-white px-5 py-2 rounded hover:bg-blue-700 transition">
+        Vai alla Dashboard
+      </a>
+    </section>
+  </main>
+
+  <!-- Bottom Navigation -->
+  <div id="bottom-nav"></div>
+
+  <script>
+    const include = (id, file) => {
+      fetch(file)
+        .then(res => res.text())
+        .then(data => {
+          document.getElementById(id).innerHTML = data;
+        });
+    };
+
+    include("header", "components/header.html");
+    include("bottom-nav", "components/bottom-nav.html");
+  </script>
 </body>
 </html>
